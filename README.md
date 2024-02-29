@@ -28,12 +28,12 @@ WINDOWS + R
 shell:startup
 ```
 
-<p>2. Rename file from keylloger.py to keylogger.pyw </p>
+<p>3. Rename file from keylloger.py to keylogger.pyw </p>
 
 ```python
 keylogger.pyw
 ```
-<p>3. Move keylogger.pyw to the Startup folder</p>
+<p>4. Move keylogger.pyw to the Startup folder</p>
 
 
 
