@@ -3,8 +3,13 @@
 
 # Install dependecies
 
-To isnatll dependecies simply pass this text below to your system console.  
+To isnatll dependecies simply pass this text below to your system console. It will install all packages needed to start keylogger: 
 
 ```python
 npm i requirements.txt
 ```
+
+# Contributing
+
+Fork if you want
+Have a nice day!
