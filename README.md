@@ -6,8 +6,27 @@
 To isnatll dependecies simply pass this text below to your system console. It will install all packages needed to start keylogger: 
 
 ```python
-npm i requirements.txt
+pip i requirements.txt
 ```
+
+then run the program
+```python
+python keylogger.py
+```
+
+to enable the keylogger after starting the computer:
+
+<p>1. Open Windows Startup folder</p>
+```python
+WINDOWS + R
+```
+<p>2. Rename file from keylloger.py to keylogger.pyw </p>
+```python
+keylogger.pyw
+```
+<p>3. </p>
+
+type shell:startup
 
 # Contributing
 
