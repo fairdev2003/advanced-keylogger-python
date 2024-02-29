@@ -14,17 +14,19 @@ then run the program
 python keylogger.py
 ```
 
-to enable the keylogger after starting the computer:
+### To enable the keylogger after starting the computer:
 
 <p>1. Open Windows Startup folder</p>
+
 ```python
 WINDOWS + R
 ```
 <p>2. Rename file from keylloger.py to keylogger.pyw </p>
+
 ```python
 keylogger.pyw
 ```
-<p>3. </p>
+<p>3. Move keylogger.pyw to the Startup folder</p>
 
 type shell:startup
 
